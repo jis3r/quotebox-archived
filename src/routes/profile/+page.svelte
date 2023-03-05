@@ -6,4 +6,4 @@
 	<h1 class="text-left text-3xl font-bold mb-4">Profile</h1>
 </main>
 
-<Navbar />
+<Navbar current="profile" />

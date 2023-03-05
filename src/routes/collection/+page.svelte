@@ -27,4 +27,4 @@
 	</div>
 </main>
 
-<Navbar />
+<Navbar current="collection" />
