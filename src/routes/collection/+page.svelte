@@ -1,6 +1,15 @@
 <script>
-	import Navbar from '../../lib/components/navbar.svelte';
+	import Navbar from '$lib/components/navbar.svelte';
 	import { Search } from 'lucide-svelte';
+	import { QuotesStore } from '../../stores.js';
+
+	let quotes = [];
+
+	QuotesStore.subscribe((value) => {
+		console.log(value);
+		quotes = value;
+	});
+
 	let change_count = 0;
 	let input_count = 0;
 </script>
@@ -25,6 +34,17 @@
 		<p class="text-gray-500">Change count: {change_count}</p>
 		<p class="text-gray-500">Input count: {input_count}</p>
 	</div>
+
+	<!-- a svelte loop that displays the array of QuotesStore from new to old-->
+	{#each quotes as quote}
+		<div class="rounded-lg p-4 shadow-md overflow-hidden my-4">
+			<h3 class="w-full">{quote.quote}</h3>
+			<p class="text-gray-500">{quote.author}</p>
+			<!--timestamp in the bottom right corner-->
+			<p class="text-gray-500 float-right">{quote.timeCreated}</p>
+			<div class="clearfix" />
+		</div>
+	{/each}
 </main>
 
 <Navbar current="collection" />
