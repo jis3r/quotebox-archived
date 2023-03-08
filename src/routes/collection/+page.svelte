@@ -4,14 +4,30 @@
 	import { QuotesStore } from '../../stores.js';
 
 	let quotes = [];
+	let filteredQuotes = [];
+
+	let searchTerm = '';
+
+	function filterQuotes() {
+		filteredQuotes = quotes.filter((quote) => {
+			return quote.quote.toLowerCase().includes(searchTerm.toLowerCase());
+		});
+	}
 
 	QuotesStore.subscribe((value) => {
-		console.log(value);
 		quotes = value;
+		filterQuotes();
 	});
 
 	let change_count = 0;
 	let input_count = 0;
+
+	function formatDate(timestamp) {
+		const date = new Date(timestamp * 1000);
+		const dateString = date.toLocaleDateString();
+		//const timeString = date.toLocaleTimeString();
+		return `${dateString}`;
+	}
 </script>
 
 <main class="mt-10 max-w-4xl justify-self-center mx-auto px-4">
@@ -22,7 +38,12 @@
 			class="bg-gray-200 bg-opacity-50 rounded-full py-2 pl-9 pr-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full"
 			placeholder="Search"
 			on:change={() => (change_count += 1)}
-			on:input={() => (input_count += 1)}
+			on:input={(event) => {
+				input_count += 1;
+				searchTerm = event.target.value;
+				filterQuotes();
+			}}
+			bind:value={searchTerm}
 		/>
 		<div
 			class="absolute top-1/2 left-4 transform -translate-y-1/2 flex items-center justify-center"
@@ -35,13 +56,17 @@
 		<p class="text-gray-500">Input count: {input_count}</p>
 	</div>
 
-	<!-- a svelte loop that displays the array of QuotesStore from new to old-->
-	{#each quotes as quote}
-		<div class="rounded-lg p-4 shadow-md overflow-hidden my-4">
+	<!-- a svelte loop that displays the array of filteredQuotes from new to old-->
+	{#each filteredQuotes as quote, i}
+		<div
+			class="rounded-lg p-4 shadow-md overflow-hidden my-4 {i === filteredQuotes.length - 1
+				? 'mb-16'
+				: ''}"
+		>
 			<h3 class="w-full">{quote.quote}</h3>
 			<p class="text-gray-500">{quote.author}</p>
 			<!--timestamp in the bottom right corner-->
-			<p class="text-gray-500 float-right">{quote.timeCreated}</p>
+			<p class="text-gray-500 float-right">{formatDate(quote.timeCreated)}</p>
 			<div class="clearfix" />
 		</div>
 	{/each}
