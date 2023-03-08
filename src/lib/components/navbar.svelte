@@ -25,7 +25,7 @@
 >
 	<button
 		on:click={gotoCollection}
-		class:text-blue-500={current === 'collection'}
+		class:text-svelte-orange={current === 'collection'}
 		class="w-1/3 p-1 flex flex-col justify-center items-center"
 	>
 		<Library />
@@ -33,7 +33,7 @@
 	</button>
 	<button
 		on:click={gotoHome}
-		class:text-blue-500={current === 'home'}
+		class:text-svelte-orange={current === 'home'}
 		class="w-1/3 p-1 flex flex-col justify-center items-center"
 	>
 		<Home />
@@ -41,7 +41,7 @@
 	</button>
 	<button
 		on:click={gotoProfile}
-		class:text-blue-500={current === 'profile'}
+		class:text-svelte-orange={current === 'profile'}
 		class="w-1/3 p-1 flex flex-col justify-center items-center"
 	>
 		<User />
