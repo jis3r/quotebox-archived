@@ -17,6 +17,7 @@
 
 	QuotesStore.subscribe((value) => {
 		quotes = value;
+		quotes.sort((a, b) => b.timeCreated - a.timeCreated);
 		filterQuotes();
 	});
 
@@ -24,12 +25,12 @@
 	let input_count = 0;
 </script>
 
-<main class="mt-10 max-w-4xl justify-self-center mx-auto px-4 text-gray-900">
-	<h1 class="text-left text-3xl font-bold mb-4">Collection</h1>
+<main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-900">
+	<h1 class="mb-4 text-left text-3xl font-bold">Collection</h1>
 	<div class="relative">
 		<input
 			type="text"
-			class="bg-white rounded-full py-2 pl-9 pr-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-full"
+			class="focus:shadow-outline w-full rounded-full bg-white py-2 pl-9 pr-4 leading-tight text-gray-700 focus:outline-none"
 			placeholder="Search"
 			on:change={() => (change_count += 1)}
 			on:input={(event) => {
@@ -40,7 +41,7 @@
 			bind:value={searchTerm}
 		/>
 		<div
-			class="absolute top-1/2 left-4 transform -translate-y-1/2 flex items-center justify-center"
+			class="absolute top-1/2 left-4 flex -translate-y-1/2 transform items-center justify-center"
 		>
 			<Search size="16" color="#9ca3af" />
 		</div>
@@ -53,7 +54,7 @@
 	<!-- a svelte loop that displays the array of filteredQuotes from new to old-->
 	{#each filteredQuotes as quote, i}
 		<div
-			class="bg-gray-50 rounded-lg p-4 shadow-md overflow-hidden my-4 {i ===
+			class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md {i ===
 			filteredQuotes.length - 1
 				? 'mb-16'
 				: ''}"
@@ -61,7 +62,7 @@
 			<h3 class="w-full">{quote.quote}</h3>
 			<p class="text-gray-500">{quote.author}</p>
 			<!--timestamp in the bottom right corner-->
-			<p class="text-gray-500 float-right">{formatDate(quote.timeCreated)}</p>
+			<p class="float-right text-gray-500">{formatDate(quote.timeCreated)}</p>
 			<div class="clearfix" />
 		</div>
 	{/each}
