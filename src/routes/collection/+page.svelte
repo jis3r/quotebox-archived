@@ -59,10 +59,9 @@
 				? 'mb-16'
 				: ''}"
 		>
-			<h3 class="w-full">{quote.quote}</h3>
-			<p class="text-gray-500">{quote.author}</p>
-			<!--timestamp in the bottom right corner-->
-			<p class="float-right text-gray-500">{formatDate(quote.timeCreated)}</p>
+			<p class="float-right w-full text-right text-gray-500">{formatDate(quote.timeCreated)}</p>
+			<h3 class="float-left w-full text-left">{quote.quote}</h3>
+			<p class="float-right w-full text-right text-gray-500">{quote.author}</p>
 			<div class="clearfix" />
 		</div>
 	{/each}

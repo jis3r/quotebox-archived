@@ -42,9 +42,9 @@
 	<h2 class="my-4 text-left text-2xl font-semibold">Recently added</h2>
 	{#each quotes.slice(0, 3) as quote, i}
 		<div class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md {i === 2 ? 'mb-24' : ''}">
-			<h3 class="w-full">{quote.quote}</h3>
-			<p class="text-gray-500">{quote.author}</p>
 			<p class="float-right text-gray-500">{formatDate(quote.timeCreated)}</p>
+			<h3 class="float-left w-full">{quote.quote}</h3>
+			<p class="float-right w-full text-right text-gray-500">{quote.author}</p>
 			<div class="clearfix" />
 		</div>
 	{/each}
