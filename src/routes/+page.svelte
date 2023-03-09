@@ -9,24 +9,37 @@
 	 * @type {{ id: number; quote: string; author: string; timeCreated: number; }[]}
 	 */
 	let quotes = [];
+	let randomQuote = {};
 
 	QuotesStore.subscribe((value) => {
 		quotes = value;
 		quotes.sort((a, b) => b.timeCreated - a.timeCreated);
 	});
+
+	function getRandomQuote() {
+		randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+	}
 </script>
 
 <main class="mx-auto max-w-4xl px-4 pt-10 text-gray-900">
 	<h1 class="mb-4 text-left text-3xl font-bold">Home</h1>
 	<div class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md">
-		<h3 class="w-full">Get a random Quote!</h3>
-		<button class="float-right mt-4 rounded-full border border-gray-900 px-4 py-2 font-bold">
+		{#if randomQuote.quote}
+			<h3 class="w-full">{randomQuote.quote}</h3>
+			<p class="text-gray-500">{randomQuote.author}</p>
+		{:else}
+			<h3 class="w-full">Get a random Quote!</h3>
+		{/if}
+		<button
+			on:click={getRandomQuote}
+			class="float-right mt-4 rounded-full border border-gray-900 px-4 py-2 font-bold"
+		>
 			Shuffle!
 		</button>
 		<div class="clearfix" />
 	</div>
 	<div />
-	<h2 class="my-4 text-left text-xl font-semibold">Recently added</h2>
+	<h2 class="my-4 text-left text-2xl font-semibold">Recently added</h2>
 	{#each quotes.slice(0, 3) as quote, i}
 		<div class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md {i === 2 ? 'mb-24' : ''}">
 			<h3 class="w-full">{quote.quote}</h3>
