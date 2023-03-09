@@ -1,33 +1,50 @@
 <script>
-	import AddQuote from '$lib/components/addQuote.svelte';
+	import AddQuoteModal from '$lib/components/addQuoteModal.svelte';
 	import Navbar from '$lib/components/navbar.svelte';
+	import { QuotesStore } from '../stores.js';
+	import formatDate from '$lib/utils/formatDate.js';
 
 	let addQuote = false;
+	/**
+	 * @type {{ id: number; quote: string; author: string; timeCreated: number; }[]}
+	 */
+	let quotes = [];
+
+	QuotesStore.subscribe((value) => {
+		quotes = value;
+		quotes.sort((a, b) => b.timeCreated - a.timeCreated);
+	});
 </script>
 
-<main class=" h-screen mt-10 max-w-4xl justify-self-center mx-auto px-4">
-	<h1 class="text-left text-3xl font-bold mb-4">Home</h1>
-	<!--div class="rounded-lg p-4 shadow-md overflow-hidden my-4">
+<main class="mx-auto max-w-4xl px-4 pt-10 text-gray-900">
+	<h1 class="mb-4 text-left text-3xl font-bold">Home</h1>
+	<div class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md">
 		<h3 class="w-full">Get a random Quote!</h3>
-		<button class="px-4 py-2 border-gray-900 border font-bold rounded-full mt-4 float-right">
+		<button class="float-right mt-4 rounded-full border border-gray-900 px-4 py-2 font-bold">
 			Shuffle!
 		</button>
 		<div class="clearfix" />
-	</!--div>
+	</div>
 	<div />
-	<h2 class="text-left text-xl font-semibold my-4">Recently added</h2>
-	<div-- class="rounded-lg p-4 shadow-md my-4">Recently Added</div-->
+	<h2 class="my-4 text-left text-xl font-semibold">Recently added</h2>
+	{#each quotes.slice(0, 3) as quote, i}
+		<div class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md {i === 2 ? 'mb-24' : ''}">
+			<h3 class="w-full">{quote.quote}</h3>
+			<p class="text-gray-500">{quote.author}</p>
+			<p class="float-right text-gray-500">{formatDate(quote.timeCreated)}</p>
+			<div class="clearfix" />
+		</div>
+	{/each}
 
+	{#if addQuote}
+		<AddQuoteModal />
+	{/if}
 	<button
 		on:click={() => (addQuote = !addQuote)}
-		class="block border-gray-900 bg-gray-900 text-white border font-bold py-2 px-4 rounded-full w-full"
+		class="fixed bottom-16 left-1/2 w-1/2 -translate-x-1/2 transform rounded-full border border-gray-900 bg-gray-900 py-2 font-bold text-gray-100"
 	>
 		Add Quote
 	</button>
-
-	{#if addQuote}
-		<AddQuote />
-	{/if}
 </main>
 
 <Navbar current="home" />
