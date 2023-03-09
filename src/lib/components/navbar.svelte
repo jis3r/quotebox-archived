@@ -26,7 +26,7 @@
 	<button
 		on:click={gotoCollection}
 		class:text-svelte-orange={current === 'collection'}
-		class="w-1/3 p-1 flex flex-col justify-center items-center"
+		class="w-1/3 p-1 flex flex-col justify-center items-center text-gray-900"
 	>
 		<Library />
 		<span class="mt-0.5 text-sm font-semibold">Collection</span>
@@ -34,7 +34,7 @@
 	<button
 		on:click={gotoHome}
 		class:text-svelte-orange={current === 'home'}
-		class="w-1/3 p-1 flex flex-col justify-center items-center"
+		class="w-1/3 p-1 flex flex-col justify-center items-center text-gray-900"
 	>
 		<Home />
 		<span class="mt-0.5 text-sm font-semibold">Home</span>
@@ -42,7 +42,7 @@
 	<button
 		on:click={gotoProfile}
 		class:text-svelte-orange={current === 'profile'}
-		class="w-1/3 p-1 flex flex-col justify-center items-center"
+		class="w-1/3 p-1 flex flex-col justify-center items-center text-gray-900"
 	>
 		<User />
 		<span class="mt-0.5 text-sm font-semibold">Profile</span>
