@@ -3,7 +3,7 @@
 	import Navbar from '$lib/components/navbar.svelte';
 	import { QuotesStore } from '../stores.js';
 	import formatDate from '$lib/utils/formatDate.js';
-	import { Plus, Shuffle } from 'lucide-svelte';
+	import { Plus } from 'lucide-svelte';
 	import { onMount } from 'svelte';
 
 	let addQuote = false;
@@ -79,20 +79,19 @@
 			</div>
 			<div>
 				<h2 class="mb-4 text-left text-2xl font-semibold">Random quotes</h2>
-				<div class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md">
+				{#if randomQuote.quote !== undefined}
+					<p>Click on the card below to get a random Quote!</p>
+				{/if}
+				<div
+					class="my-4 cursor-pointer overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md"
+					on:click={getRandomQuote}
+				>
 					{#if randomQuote.quote}
 						<h3 class="w-full">{randomQuote.quote}</h3>
 						<p class="w-full text-right text-gray-500">{randomQuote.author}</p>
 					{:else}
-						<h3 class="w-full">Get a random Quote!</h3>
+						<h3 class="w-full italic text-gray-500">Click on this card to get a random Quote!</h3>
 					{/if}
-					<button
-						on:click={getRandomQuote}
-						class="float-right mt-4 rounded-full border border-gray-900 p-2 font-bold"
-					>
-						<Shuffle />
-					</button>
-					<div class="clearfix" />
 				</div>
 			</div>
 		</div>
