@@ -3,6 +3,7 @@
 	import Navbar from '$lib/components/navbar.svelte';
 	import { QuotesStore } from '../stores.js';
 	import formatDate from '$lib/utils/formatDate.js';
+	import { Plus, Shuffle } from 'lucide-svelte';
 
 	let addQuote = false;
 	/**
@@ -50,9 +51,9 @@
 			{/if}
 			<button
 				on:click={getRandomQuote}
-				class="float-right mt-4 rounded-full border border-gray-900 px-4 py-2 font-bold"
+				class="float-right mt-4 rounded-full border border-gray-900 p-2 font-bold"
 			>
-				Shuffle!
+				<Shuffle />
 			</button>
 			<div class="clearfix" />
 		</div>
@@ -71,9 +72,9 @@
 
 		<button
 			on:click={() => (addQuote = !addQuote)}
-			class="fixed bottom-16 left-1/2 w-1/2 -translate-x-1/2 transform rounded-full border border-gray-900 bg-gray-900 py-2 font-bold text-gray-100"
+			class="fixed bottom-16 rounded-full border border-gray-900 bg-gray-900 p-2 font-bold text-gray-100"
 		>
-			Add Quote
+			<Plus />
 		</button>
 	{/if}
 </main>
