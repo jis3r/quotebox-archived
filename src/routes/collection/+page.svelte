@@ -8,10 +8,14 @@
 	let filteredQuotes = [];
 
 	let searchTerm = '';
+	let authorName = '';
 
 	function filterQuotes() {
 		filteredQuotes = quotes.filter((quote) => {
-			return quote.quote.toLowerCase().includes(searchTerm.toLowerCase());
+			const includesSearchTerm = quote.quote.toLowerCase().includes(searchTerm.toLowerCase());
+			const includesAuthorName =
+				authorName === '' || quote.author.toLowerCase() === authorName.toLowerCase();
+			return includesSearchTerm && includesAuthorName;
 		});
 	}
 
@@ -46,6 +50,22 @@
 			<Search size="16" color="#9ca3af" />
 		</div>
 	</div>
+	<div class="relative mt-4">
+		<select
+			class="focus:shadow-outline rounded-full bg-white px-4 py-2 leading-tight text-gray-700 focus:outline-none"
+			on:change={(event) => {
+				change_count += 1;
+				authorName = event.target.value;
+				filterQuotes();
+			}}
+			bind:value={authorName}
+		>
+			<option value="">All Authors</option>
+			{#each Array.from(new Set(quotes.map((quote) => quote.author))) as author}
+				<option value={author}>{author}</option>
+			{/each}
+		</select>
+	</div>
 	<div class="mt-4">
 		<p class="text-gray-500">Change count: {change_count}</p>
 		<p class="text-gray-500">Input count: {input_count}</p>
@@ -61,10 +81,17 @@
 		>
 			<p class="float-right w-full text-right text-gray-500">{formatDate(quote.timeCreated)}</p>
 			<h3 class="float-left w-full text-left">{quote.quote}</h3>
-			<p class="float-right w-full text-right text-gray-500">{quote.author}</p>
+			<p
+				class="float-right cursor-pointer text-right text-gray-500 hover:underline"
+				on:click={function () {
+					authorName = quote.author;
+					filterQuotes();
+				}}
+			>
+				{quote.author}
+			</p>
 			<div class="clearfix" />
 		</div>
 	{/each}
 </main>
-
 <Navbar current="collection" />
