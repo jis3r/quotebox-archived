@@ -1,7 +1,7 @@
 <script>
 	import Navbar from '$lib/components/navbar.svelte';
 	import { Search } from 'lucide-svelte';
-	import { QuotesStore } from '../../stores.js';
+	import { QuotesStore } from '../../../stores.js';
 	import formatDate from '$lib/utils/formatDate.js';
 
 	let quotes = [];

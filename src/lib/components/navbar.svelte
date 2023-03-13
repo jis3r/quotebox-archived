@@ -8,15 +8,15 @@
 	export let current;
 
 	const gotoCollection = () => {
-		goto('/collection');
+		goto('/app/collection');
 	};
 
 	const gotoHome = () => {
-		goto('/');
+		goto('/app');
 	};
 
 	const gotoProfile = () => {
-		goto('/profile');
+		goto('/app/profile');
 	};
 </script>
 
