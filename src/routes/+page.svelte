@@ -1,26 +1,21 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
+	import { blur } from 'svelte/transition';
+
+	let current = 0;
+
+	onMount(rotateText);
+
+	function rotateText() {
+		setInterval(() => {
+			current = (current + 1) % 5;
+		}, 5000);
+	}
 
 	function gotoApp() {
 		goto('/app');
 	}
-
-	/**
-	 * @type {string[]}
-	 */
-	const examples = ['friends', 'children', 'siblings', 'partner', 'parents'];
-
-	//function, that rotates the text in the #changing span at a set interval
-	function rotateText() {
-		let i = 0;
-		setInterval(function () {
-			document.getElementById('changing').textContent = examples[i];
-			i = (i + 1) % examples.length;
-		}, 2000);
-	}
-
-	onMount(rotateText);
 </script>
 
 <nav class="fixed top-0 h-20 w-screen bg-gray-200 bg-opacity-50 backdrop-blur-sm">
@@ -30,9 +25,18 @@
 <main class="mx-auto mt-20 max-w-4xl pt-36">
 	<div class="mx-auto">
 		<h1 class="text-5xl font-bold md:text-7xl">
-			<span>Never forget a meaningful moment and save the best quotes from your</span>
-			<span id="changing" class=" text-svelte-orange">friends</span>
-			<span>.</span>
+			Never forget meaningful moments and save the best quotes from your
+			{#if current === 0}
+				<span class="text-svelte-orange" in:blur={{ duration: 250 }}>friends</span>.
+			{:else if current === 1}
+				<span class="text-svelte-orange" in:blur={{ duration: 250 }}>children</span>.
+			{:else if current === 2}
+				<span class="text-svelte-orange" in:blur={{ duration: 250 }}>siblings</span>.
+			{:else if current === 3}
+				<span class="text-svelte-orange" in:blur={{ duration: 250 }}>partner</span>.
+			{:else if current === 4}
+				<span class="text-svelte-orange" in:blur={{ duration: 250 }}>parents</span>.
+			{/if}
 		</h1>
 		<button
 			on:click={gotoApp}
