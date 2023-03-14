@@ -1,38 +1,33 @@
 # quotebox
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+A personal quote collection app that allows users to easily collect, save and organise quotes from family members, friends and loved ones.
 
-## Creating a project
+## Installation
 
-If you're seeing this, you've probably already done this step. Congrats!
+1.  Clone the repository with `git clone https://github.com/jis3r/quotebox.git` or [download the code via .zip](https://github.com/jis3r/quotebox/archive/refs/heads/main.zip).
+2.  Install the required dependencies by running `npm i`.
+3.  Run the app with `npm run dev`.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Features
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- Add quotes with quote, author and date
+- Search for quotes
+- Filter quotes by author
+- Get a "quote of the day"
+- Get random quotes from your collection
 
-## Developing
+## Technologies used
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+-   [SvelteKit](https://kit.svelte.dev/)
+-   [Tailwind CSS](https://tailwindcss.com/)
+-   [Lucide Icons](https://lucide.dev/)
+-   [Vercel](https://vercel.com/)
+-   [localStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
-```bash
-npm run dev
+## Demo
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+Check out the current demo of quotebox [here](https://quotebox.vercel.app).
 
-## Building
+## Background
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+This project was created by [@jis3r](https://twitter.com/jis3r) for the first [Svelte Hackathon](https://hack.sveltesociety.dev/). I am the only contributor and the first commit is from February 23, 2023.
