@@ -21,6 +21,7 @@ A personal quote collection app that allows users to easily collect, save and or
 -   [SvelteKit](https://kit.svelte.dev/)
 -   [Tailwind CSS](https://tailwindcss.com/)
 -   [Lucide Icons](https://lucide.dev/)
+-   [Supabase](https://supabase.com/)
 -   [Vercel](https://vercel.com/)
 -   [localStorage API](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
