@@ -1,16 +1,18 @@
-<script>
+<script lang="ts">
 	import AddQuoteModal from '$lib/components/addQuoteModal.svelte';
 	import Navbar from '$lib/components/navbar.svelte';
-	import { QuotesStore } from '../../stores.js';
+	import { QuotesStore } from '../../stores/quoteStore.js';
 	import formatDate from '$lib/utils/formatDate.js';
 	import { Plus } from 'lucide-svelte';
 	import { onMount } from 'svelte';
+	import { supabaseClient } from '$lib/supabase';
+	import { goto } from '$app/navigation';
 
 	let addQuote = false;
 	/**
 	 * @type {{ id: number; quote: string; author: string; timeCreated: number; }[]}
 	 */
-	let quotes = [];
+	let quotes: {}[] = [];
 	let randomQuote = {};
 	let quoteOfTheDay = {};
 
@@ -55,8 +57,13 @@
 		}
 	}
 
-	onMount(() => {
-		getQuoteOfTheDay();
+	onMount(async () => {
+		const user = await supabaseClient.auth.getSession();
+		if (!user.data.session) {
+			goto('/login');
+		} else {
+			getQuoteOfTheDay();
+		}
 	});
 </script>
 
