@@ -1,7 +1,7 @@
 <script>
 	import AddQuoteModal from '$lib/components/addQuoteModal.svelte';
 	import Navbar from '$lib/components/navbar.svelte';
-	import { QuotesStore } from '../../stores.js';
+	import { QuotesStore } from '../../stores/quoteStore.js';
 	import formatDate from '$lib/utils/formatDate.js';
 	import { Plus } from 'lucide-svelte';
 	import { onMount } from 'svelte';
