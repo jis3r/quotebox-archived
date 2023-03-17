@@ -69,14 +69,14 @@
 		<div class="flex justify-between">
 			<button
 				type="button"
-				class="rounded-full border border-gray-900 py-2 px-4 font-medium text-gray-900 dark:border-gray-50 dark:text-gray-50"
+				class="rounded-full border border-gray-1000 py-2 px-4 font-medium text-gray-1000 dark:border-gray-50 dark:text-gray-50"
 				on:click={handleCancel}
 			>
 				Cancel
 			</button>
 			<button
 				type="submit"
-				class="rounded-full bg-gray-900 py-2 px-4 font-medium text-gray-100 dark:bg-gray-50 dark:text-gray-900"
+				class="rounded-full bg-gray-1000 py-2 px-4 font-medium text-gray-100 dark:bg-gray-50 dark:text-gray-1000"
 			>
 				Add Quote
 			</button>

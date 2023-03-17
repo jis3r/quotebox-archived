@@ -51,7 +51,7 @@
 
 <nav class="fixed top-0 h-20 w-screen bg-opacity-50 backdrop-blur-sm">
 	<div class="mx-auto flex h-full max-w-5xl items-center justify-between px-4 xl:px-0">
-		<a href="/" class="text-gray-900 dark:text-gray-50">
+		<a href="/" class="text-gray-1000 dark:text-gray-50">
 			<svg
 				width="176"
 				height="38"
@@ -88,23 +88,23 @@
 				/>
 			</svg>
 		</a>
-		<div class="hidden text-gray-900 dark:text-gray-50 md:flex">
+		<div class="hidden text-gray-1000 dark:text-gray-50 md:flex">
 			<button>Features</button>
 			<button>Test</button>
 		</div>
 		<div class="hidden md:flex">
 			<button
 				on:click={gotoLogin}
-				class="rounded-full py-2 px-4 font-bold text-gray-900 dark:text-gray-50">Login</button
+				class="rounded-full py-2 px-4 font-bold text-gray-1000 dark:text-gray-50">Login</button
 			>
 			<button
 				on:click={gotoRegister}
-				class="rounded-full border border-gray-900 bg-gray-900 py-2 px-4 font-bold text-gray-100 dark:border-gray-50 dark:bg-gray-50 dark:text-gray-900"
+				class="rounded-full border border-gray-1000 bg-gray-1000 py-2 px-4 font-bold text-gray-100 dark:border-gray-50 dark:bg-gray-50 dark:text-gray-1000"
 				>Register</button
 			>
 		</div>
 		<div class="flex md:hidden">
-			<button on:click={toggleMenu} class="text-gray-900 dark:text-gray-50">
+			<button on:click={toggleMenu} class="text-gray-1000 dark:text-gray-50">
 				{#if menuVisible}
 					<X />
 				{:else}
@@ -120,32 +120,32 @@
 		<div class="flex flex-col items-center justify-center">
 			<button
 				on:click={gotoLogin}
-				class="mb-4 rounded-full py-2 px-4 font-bold text-gray-900 dark:text-gray-50"
+				class="mb-4 rounded-full py-2 px-4 font-bold text-gray-1000 dark:text-gray-50"
 			>
 				Login
 			</button>
 			<button
 				on:click={gotoRegister}
-				class="rounded-full border border-gray-900 bg-gray-900 py-2 px-4 font-bold text-gray-100 dark:border-gray-50 dark:bg-gray-50 dark:text-gray-900"
+				class="rounded-full border border-gray-1000 bg-gray-1000 py-2 px-4 font-bold text-gray-100 dark:border-gray-50 dark:bg-gray-50 dark:text-gray-1000"
 			>
 				Register
 			</button>
 		</div>
 	{:else if data.session}
 		{#if data.session.user}
-			<h1 class="md:text-7x dark:text-gray-50l text-4xl font-bold text-gray-900">
+			<h1 class="md:text-7x dark:text-gray-50l text-4xl font-bold text-gray-1000">
 				Welcome back, <span class="text-svelte-orange">{data.session.user.email}</span>!
 			</h1>
 			<form action="/logout" method="POST" use:enhance={submitLogout}>
 				<button
 					type="submit"
-					class="btn btn-primary mt-6 w-full rounded-full border border-transparent bg-gray-900 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-svelte-orange focus:ring-offset-2"
+					class="btn btn-primary mt-6 w-full rounded-full border border-transparent bg-gray-1000 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-svelte-orange focus:ring-offset-2"
 					>Logout</button
 				>
 			</form>
 		{/if}
 	{:else}
-		<h1 class="text-4xl font-bold text-gray-900 dark:text-gray-50 md:text-7xl">
+		<h1 class="text-4xl font-bold text-gray-1000 dark:text-gray-50 md:text-7xl">
 			Never forget a meaningful moment and save the best quotes from your
 			{#if current === 0}
 				<span class="text-svelte-orange" in:blur={{ duration: 250 }}>friends</span>.
@@ -163,13 +163,13 @@
 		<div class="mt-8 flex gap-2 md:mt-16">
 			<button
 				on:click={gotoRegister}
-				class="rounded-full border border-gray-900 bg-gray-900 py-2 px-4 font-bold text-gray-100 dark:border-gray-50 dark:bg-gray-50 dark:text-gray-900"
+				class="rounded-full border border-gray-1000 bg-gray-1000 py-2 px-4 font-bold text-gray-100 dark:border-gray-50 dark:bg-gray-50 dark:text-gray-1000"
 				>Create account</button
 			>
 
 			<button
 				on:click={gotoApp}
-				class="rounded-full border border-gray-900 py-2 px-4 font-bold text-gray-900 dark:border-gray-50 dark:text-gray-50"
+				class="rounded-full border border-gray-1000 py-2 px-4 font-bold text-gray-1000 dark:border-gray-50 dark:text-gray-50"
 				>Demo</button
 			>
 		</div>

@@ -67,7 +67,7 @@
 	});
 </script>
 
-<main class="mx-auto max-w-4xl px-4 pt-10 text-gray-900 dark:text-gray-50">
+<main class="mx-auto max-w-4xl px-4 pt-10 text-gray-1000 dark:text-gray-50">
 	{#if addQuote}
 		<AddQuoteModal on:addQuote={handleAddQuote} on:cancel={handleCancel} />
 	{:else}
@@ -116,7 +116,7 @@
 
 		<button
 			on:click={() => (addQuote = !addQuote)}
-			class="fixed right-4 bottom-16 rounded-full border border-gray-900 bg-gray-900 p-2 font-bold text-gray-100 dark:bg-gray-100 dark:text-gray-900"
+			class="fixed right-4 bottom-16 rounded-full border border-gray-1000 bg-gray-1000 p-2 font-bold text-gray-100 dark:bg-gray-100 dark:text-gray-1000"
 		>
 			<Plus />
 		</button>

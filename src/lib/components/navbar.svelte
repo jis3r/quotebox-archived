@@ -26,7 +26,7 @@
 			on:click={gotoCollection}
 			class:text-svelte-orange={current === 'collection'}
 			class:dark:text-svelte-orange={current === 'collection'}
-			class="flex w-1/3 flex-col items-center justify-center p-1 text-gray-900 dark:text-gray-50"
+			class="flex w-1/3 flex-col items-center justify-center p-1 text-gray-1000 dark:text-gray-50"
 		>
 			<Library />
 			<span class="mt-0.5 text-sm font-semibold">Collection</span>
@@ -35,7 +35,7 @@
 			on:click={gotoHome}
 			class:text-svelte-orange={current === 'home'}
 			class:dark:text-svelte-orange={current === 'home'}
-			class="flex w-1/3 flex-col items-center justify-center p-1 text-gray-900 dark:text-gray-50"
+			class="flex w-1/3 flex-col items-center justify-center p-1 text-gray-1000 dark:text-gray-50"
 		>
 			<Home />
 			<span class="mt-0.5 text-sm font-semibold">Home</span>
@@ -44,7 +44,7 @@
 			on:click={gotoProfile}
 			class:text-svelte-orange={current === 'profile'}
 			class:dark:text-svelte-orange={current === 'profile'}
-			class="flex w-1/3 flex-col items-center justify-center p-1 text-gray-900 dark:text-gray-50"
+			class="flex w-1/3 flex-col items-center justify-center p-1 text-gray-1000 dark:text-gray-50"
 		>
 			<User />
 			<span class="mt-0.5 text-sm font-semibold">Profile</span>

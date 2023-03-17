@@ -17,7 +17,7 @@
 	export let data: PageData;
 </script>
 
-<main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-900 dark:text-gray-50">
+<main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-1000 dark:text-gray-50">
 	<h1 class="mb-4 text-left text-3xl font-bold">Profile</h1>
 	{#if data.session}
 		<h2 class="text-2xl font-semibold">
@@ -28,7 +28,7 @@
 		<form action="/logout" method="POST" use:enhance={submitLogout}>
 			<button
 				type="submit"
-				class="btn btn-primary mt-6 rounded-full border border-transparent bg-gray-900 py-2 px-4 text-sm font-medium text-gray-50 shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-svelte-orange dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-300"
+				class="btn btn-primary mt-6 rounded-full border border-transparent bg-gray-1000 py-2 px-4 text-sm font-medium text-gray-50 shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-svelte-orange dark:bg-gray-50 dark:text-gray-1000 dark:hover:bg-gray-300"
 				>Logout</button
 			>
 		</form>
