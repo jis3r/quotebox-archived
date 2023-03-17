@@ -32,14 +32,14 @@
 	}
 </script>
 
-<div class="mx-auto max-w-md rounded-md bg-white p-6 shadow-md">
+<div class="mx-auto max-w-md rounded-md bg-gray-50 p-6 shadow-md dark:bg-gray-800">
 	<h2 class="mb-4 text-xl font-semibold">Add Quote</h2>
 	<form on:submit={handleSubmit}>
 		<div class="mb-4">
 			<label for="quote" class="mb-2 block font-medium">Quote:</label>
 			<textarea
 				id="quote"
-				class="w-full rounded-md border border-gray-300 p-2 focus:border-svelte-orange focus:outline-none"
+				class="w-full rounded-md border border-gray-300 bg-gray-50 p-2 focus:border-svelte-orange focus:outline-none dark:bg-gray-800"
 				bind:value={quote}
 				required
 			/>
@@ -50,7 +50,7 @@
 			<input
 				type="text"
 				id="author"
-				class="w-full rounded-md border border-gray-300 p-2 focus:border-svelte-orange focus:outline-none"
+				class="w-full rounded-md border border-gray-300 bg-gray-50 p-2 focus:border-svelte-orange focus:outline-none dark:bg-gray-800"
 				bind:value={author}
 				required
 			/>
@@ -61,7 +61,7 @@
 			<input
 				type="date"
 				id="date"
-				class="w-full rounded-md border border-gray-300 p-2 focus:border-svelte-orange focus:outline-none"
+				class="w-full rounded-md border border-gray-300 bg-gray-50 p-2 focus:border-svelte-orange focus:outline-none dark:bg-gray-800"
 				bind:value={date}
 			/>
 		</div>
@@ -69,12 +69,15 @@
 		<div class="flex justify-between">
 			<button
 				type="button"
-				class="rounded-full border border-gray-900 py-2 px-4 font-medium text-gray-900"
+				class="rounded-full border border-gray-900 py-2 px-4 font-medium text-gray-900 dark:border-gray-50 dark:text-gray-50"
 				on:click={handleCancel}
 			>
 				Cancel
 			</button>
-			<button type="submit" class="rounded-full bg-gray-900 py-2 px-4 font-medium text-gray-100">
+			<button
+				type="submit"
+				class="rounded-full bg-gray-900 py-2 px-4 font-medium text-gray-100 dark:bg-gray-50 dark:text-gray-900"
+			>
 				Add Quote
 			</button>
 		</div>

@@ -29,12 +29,12 @@
 	let input_count = 0;
 </script>
 
-<main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-900">
+<main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-900 dark:text-gray-50">
 	<h1 class="mb-4 text-left text-3xl font-bold">Collection</h1>
 	<div class="relative">
 		<input
 			type="text"
-			class="focus:shadow-outline w-full rounded-full bg-white py-2 pl-9 pr-4 leading-tight text-gray-700 focus:outline-none"
+			class="focus:shadow-outline w-full rounded-full bg-white py-2 pl-9 pr-4 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
 			placeholder="Search"
 			on:change={() => (change_count += 1)}
 			on:input={(event) => {
@@ -74,7 +74,7 @@
 	<!-- a svelte loop that displays the array of filteredQuotes from new to old-->
 	{#each filteredQuotes as quote, i}
 		<div
-			class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md {i ===
+			class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800 {i ===
 			filteredQuotes.length - 1
 				? 'mb-16'
 				: ''}"
