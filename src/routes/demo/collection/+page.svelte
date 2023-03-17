@@ -52,7 +52,7 @@
 	</div>
 	<div class="relative mt-4">
 		<select
-			class="focus:shadow-outline rounded-full bg-white px-4 py-2 leading-tight text-gray-700 focus:outline-none"
+			class="focus:shadow-outline rounded-full bg-white px-4 py-2 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
 			on:change={(event) => {
 				change_count += 1;
 				authorName = event.target.value;
