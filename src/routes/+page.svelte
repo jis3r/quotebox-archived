@@ -117,7 +117,7 @@
 <main class="mx-auto mt-20 grid max-w-5xl px-4 pt-8 md:pt-32 xl:px-0">
 	{#if menuVisible}
 		<div class="flex flex-col items-center justify-center">
-			<button on:click={gotoRegister} class="mb-4 rounded-full py-2 px-4 font-bold text-gray-900">
+			<button on:click={gotoLogin} class="mb-4 rounded-full py-2 px-4 font-bold text-gray-900">
 				Login
 			</button>
 			<button
@@ -164,7 +164,7 @@
 			>
 
 			<button
-				on:click={gotoDemo}
+				on:click={gotoApp}
 				class="rounded-full border border-gray-900 py-2 px-4 font-bold text-gray-900">Demo</button
 			>
 		</div>
