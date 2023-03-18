@@ -1,28 +1,54 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+	import { addQuote } from '../../stores/quoteStore';
+	import { supabaseClient } from '$lib/supabase';
 
 	const dispatch = createEventDispatcher();
 
-	let quote = '';
-	let author = '';
+	let user_id = '';
 	let date = new Date().toISOString().slice(0, 10);
+	let text = '';
+	let author = '';
+	/**
+	 * @type {string[]}
+	 */
+	let tags = [];
+
+	async function getUser() {
+		const {
+			data: { user }
+		} = await supabaseClient.auth.getUser();
+		if (user) {
+			user_id = user.id;
+			console.log(user);
+		} else {
+			console.log('User not logged in.');
+		}
+	}
+
+	getUser();
 
 	function handleSubmit(event) {
 		event.preventDefault();
 		const selectedDate = new Date(date);
 		const currentDate = new Date();
 		const newQuote = {
-			quote,
+			created_at: new Date(
+				selectedDate.setHours(
+					currentDate.getHours(),
+					currentDate.getMinutes(),
+					currentDate.getSeconds(),
+					currentDate.getMilliseconds()
+				)
+			).toISOString(),
+			text,
 			author,
-			timeCreated: selectedDate.setHours(
-				currentDate.getHours(),
-				currentDate.getMinutes(),
-				currentDate.getSeconds(),
-				currentDate.getMilliseconds()
-			)
+			tags
 		};
+		console.log(typeof newQuote.created_at);
+		addQuote(user_id, newQuote);
 		dispatch('addQuote', newQuote);
-		quote = '';
+		text = '';
 		author = '';
 		date = new Date().toISOString().slice(0, 10);
 	}
@@ -40,7 +66,7 @@
 			<textarea
 				id="quote"
 				class="w-full rounded-md border border-gray-300 bg-gray-50 p-2 focus:border-svelte-orange focus:outline-none dark:bg-gray-800"
-				bind:value={quote}
+				bind:value={text}
 				required
 			/>
 		</div>
