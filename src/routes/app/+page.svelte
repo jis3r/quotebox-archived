@@ -10,7 +10,7 @@
 
 	let addQuote = false;
 	/**
-	 * @type {{ id: number; quote: string; author: string; timeCreated: number; }[]}
+	 * @type {{ id: number; quote: string; author: string; created_at: number; }[]}
 	 */
 	let quotes: {}[] = [];
 	let randomQuote = {};
@@ -18,7 +18,7 @@
 
 	QuotesStore.subscribe((value) => {
 		quotes = value;
-		quotes.sort((a, b) => b.timeCreated - a.timeCreated);
+		quotes.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 	});
 
 	/**
@@ -37,7 +37,7 @@
 	}
 
 	function getRandomQuote() {
-		randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+		randomQuote = quotes[Math.floor(Math.random() * quotes.length)] || {};
 	}
 
 	function getQuoteOfTheDay() {
@@ -76,8 +76,8 @@
 			<div>
 				<h2 class="mb-4 text-left text-2xl font-semibold">Quote of the day</h2>
 				<div class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800">
-					{#if quoteOfTheDay.quote}
-						<h3 class="w-full">{quoteOfTheDay.quote}</h3>
+					{#if quoteOfTheDay.text}
+						<h3 class="w-full">{quoteOfTheDay.text}</h3>
 						<p class="w-full text-right text-gray-500">{quoteOfTheDay.author}</p>
 					{:else}
 						<h3 class="w-full italic text-gray-500">No Quote of the day available. :(</h3>
@@ -90,8 +90,8 @@
 					class="my-4 cursor-pointer overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800"
 					on:click={getRandomQuote}
 				>
-					{#if randomQuote.quote}
-						<h3 class="w-full">{randomQuote.quote}</h3>
+					{#if randomQuote.text}
+						<h3 class="w-full">{randomQuote.text}</h3>
 						<p class="w-full text-right text-gray-500">{randomQuote.author}</p>
 					{:else}
 						<h3 class="w-full italic text-gray-500">Click on this card to get a random Quote!</h3>
@@ -101,18 +101,24 @@
 		</div>
 
 		<h2 class="my-4 text-left text-2xl font-semibold">Recently added</h2>
-		{#each quotes.slice(0, 3) as quote, i}
-			<div
-				class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800 {i === 2
-					? 'mb-24'
-					: ''}"
-			>
-				<p class="float-right text-gray-500">{formatDate(quote.timeCreated)}</p>
-				<h3 class="float-left w-full">{quote.quote}</h3>
-				<p class="float-right w-full text-right text-gray-500">{quote.author}</p>
-				<div class="clearfix" />
-			</div>
-		{/each}
+		{#if quotes.length === 0}
+			<h3 class="w-full italic text-gray-500">
+				Nothing here yet. Change this by tapping the plus-button in the bottom-right corner!
+			</h3>
+		{:else}
+			{#each quotes.slice(0, 3) as quote, i}
+				<div
+					class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800 {i === 2
+						? 'mb-24'
+						: ''}"
+				>
+					<p class="float-right text-gray-500">{formatDate(quote.created_at)}</p>
+					<h3 class="float-left w-full">{quote.text}</h3>
+					<p class="float-right w-full text-right text-gray-500">{quote.author}</p>
+					<div class="clearfix" />
+				</div>
+			{/each}
+		{/if}
 
 		<button
 			on:click={() => (addQuote = !addQuote)}

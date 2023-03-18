@@ -12,7 +12,7 @@
 
 	function filterQuotes() {
 		filteredQuotes = quotes.filter((quote) => {
-			const includesSearchTerm = quote.quote.toLowerCase().includes(searchTerm.toLowerCase());
+			const includesSearchTerm = quote.text.toLowerCase().includes(searchTerm.toLowerCase());
 			const includesAuthorName =
 				authorName === '' || quote.author.toLowerCase() === authorName.toLowerCase();
 			return includesSearchTerm && includesAuthorName;
@@ -21,7 +21,7 @@
 
 	QuotesStore.subscribe((value) => {
 		quotes = value;
-		quotes.sort((a, b) => b.timeCreated - a.timeCreated);
+		quotes.sort((a, b) => b.created_at - a.created_at);
 		filterQuotes();
 	});
 
@@ -79,8 +79,8 @@
 				? 'mb-16'
 				: ''}"
 		>
-			<p class="float-right w-full text-right text-gray-500">{formatDate(quote.timeCreated)}</p>
-			<h3 class="float-left w-full text-left">{quote.quote}</h3>
+			<p class="float-right w-full text-right text-gray-500">{formatDate(quote.created_at)}</p>
+			<h3 class="float-left w-full text-left">{quote.text}</h3>
 			<p
 				class="float-right cursor-pointer text-right text-gray-500 hover:underline"
 				on:click={function () {

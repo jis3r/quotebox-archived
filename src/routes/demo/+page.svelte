@@ -8,7 +8,7 @@
 
 	let addQuote = false;
 	/**
-	 * @type {{ id: number; quote: string; author: string; timeCreated: number; }[]}
+	 * @type {{ id: number; quote: string; author: string; created_at: number; }[]}
 	 */
 	let quotes = [];
 	let randomQuote = {};
@@ -16,7 +16,7 @@
 
 	QuotesStore.subscribe((value) => {
 		quotes = value;
-		quotes.sort((a, b) => b.timeCreated - a.timeCreated);
+		quotes.sort((a, b) => b.created_at - a.created_at);
 	});
 
 	/**
@@ -69,8 +69,8 @@
 			<div>
 				<h2 class="mb-4 text-left text-2xl font-semibold">Quote of the day</h2>
 				<div class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800">
-					{#if quoteOfTheDay.quote}
-						<h3 class="w-full">{quoteOfTheDay.quote}</h3>
+					{#if quoteOfTheDay.text}
+						<h3 class="w-full">{quoteOfTheDay.text}</h3>
 						<p class="w-full text-right text-gray-500">{quoteOfTheDay.author}</p>
 					{:else}
 						<h3 class="w-full italic text-gray-500">No Quote of the day available. :(</h3>
@@ -83,8 +83,8 @@
 					class="my-4 cursor-pointer overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800"
 					on:click={getRandomQuote}
 				>
-					{#if randomQuote.quote}
-						<h3 class="w-full">{randomQuote.quote}</h3>
+					{#if randomQuote.text}
+						<h3 class="w-full">{randomQuote.text}</h3>
 						<p class="w-full text-right text-gray-500">{randomQuote.author}</p>
 					{:else}
 						<h3 class="w-full italic text-gray-500">Click on this card to get a random Quote!</h3>
@@ -100,8 +100,8 @@
 					? 'mb-24'
 					: ''}"
 			>
-				<p class="float-right text-gray-500">{formatDate(quote.timeCreated)}</p>
-				<h3 class="float-left w-full">{quote.quote}</h3>
+				<p class="float-right text-gray-500">{formatDate(quote.created_at)}</p>
+				<h3 class="float-left w-full">{quote.text}</h3>
 				<p class="float-right w-full text-right text-gray-500">{quote.author}</p>
 				<div class="clearfix" />
 			</div>

@@ -1,9 +1,8 @@
 /**
- * @param {string | number | Date} timestamp
+ * @param {Date | string} timestamp
  */
 function formatDate(timestamp) {
-    const date = new Date(timestamp);
-    return date.toLocaleDateString();
+    return new Date(timestamp).toLocaleDateString();
   }
   
   export default formatDate;
