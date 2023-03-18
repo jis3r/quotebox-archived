@@ -4,6 +4,9 @@
 	import { supabaseClient } from '$lib/supabase';
 	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
+	import { Moon, Sun, LogOut } from 'lucide-svelte';
+
+	let theme = localStorage.theme || 'dark';
 
 	const submitLogout: SubmitFunction = async ({ cancel }) => {
 		const { error } = await supabaseClient.auth.signOut();
@@ -13,6 +16,12 @@
 		cancel();
 		goto('/');
 	};
+
+	function toggleTheme() {
+		theme = theme === 'light' ? 'dark' : 'light';
+		localStorage.theme = theme;
+		document.documentElement.classList.toggle('dark', theme === 'dark');
+	}
 
 	export let data: PageData;
 </script>
@@ -25,14 +34,40 @@
 				>{data.session.user.email.substring(0, data.session.user.email.indexOf('@'))}</span
 			>!
 		</h2>
-		<form action="/logout" method="POST" use:enhance={submitLogout}>
+		<form
+			action="/logout"
+			method="POST"
+			use:enhance={submitLogout}
+			class="mt-4 flex items-center justify-between space-x-4 border-b border-gray-300 py-3 dark:border-gray-700"
+		>
+			<span class="font-medium text-gray-1000 dark:text-gray-50">Account</span>
+
 			<button
 				type="submit"
-				class="btn btn-primary mt-6 rounded-full border border-transparent bg-gray-1000 py-2 px-4 text-sm font-medium text-gray-50 shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-svelte-orange dark:bg-gray-50 dark:text-gray-1000 dark:hover:bg-gray-300"
-				>Logout</button
+				class="flex items-center space-x-2 font-medium text-gray-1000 dark:text-gray-50"
 			>
+				<span>Logout</span>
+				<LogOut color="#FF3E00" />
+			</button>
 		</form>
 	{/if}
+	<div
+		class="flex items-center justify-between space-x-4 border-b border-gray-300 py-3 dark:border-gray-700"
+	>
+		<span class="font-medium text-gray-1000 dark:text-gray-50">Theme</span>
+		<button
+			class="flex items-center space-x-2 font-medium text-gray-1000 dark:text-gray-50"
+			on:click={toggleTheme}
+		>
+			{#if theme === 'light'}
+				<span>Light</span>
+				<Sun color="#FF3E00" />
+			{:else}
+				<span>Dark</span>
+				<Moon color="#FF3E00" />
+			{/if}
+		</button>
+	</div>
 </main>
 
 <Navbar current="profile" />
