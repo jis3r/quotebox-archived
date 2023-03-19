@@ -1,7 +1,7 @@
 <script lang="ts">
 	import AddQuoteModal from '$lib/components/addQuoteModal.svelte';
 	import Navbar from '$lib/components/navbar.svelte';
-	import { QuotesStore } from '../../stores/quoteStore.js';
+	import { loadQuotes, QuotesStore } from '../../stores/quoteStore.js';
 	import formatDate from '$lib/utils/formatDate.js';
 	import { Plus } from 'lucide-svelte';
 	import { onMount } from 'svelte';
@@ -62,7 +62,8 @@
 		if (!user.data.session) {
 			goto('/login');
 		} else {
-			getQuoteOfTheDay();
+			loadQuotes();
+			//getQuoteOfTheDay();
 		}
 	});
 </script>
