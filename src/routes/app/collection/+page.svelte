@@ -5,6 +5,9 @@
 	import formatDate from '$lib/utils/formatDate.js';
 
 	let quotes = [];
+	/**
+	 * @type {string | any[]}
+	 */
 	let filteredQuotes = [];
 
 	let searchTerm = '';
@@ -29,12 +32,15 @@
 	let input_count = 0;
 </script>
 
-<main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-1000 dark:text-gray-50">
-	<h1 class="mb-4 text-left text-3xl font-bold">Collection</h1>
+<h1 class="px-4 pt-10 text-left text-3xl font-bold text-gray-1000 dark:text-gray-50">Collection</h1>
+<div
+	id="stickySearchAndFilter"
+	class="sticky top-0 z-10 w-full border-b border-gray-300 bg-gray-100 bg-opacity-75 px-4 pt-4 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-1000 dark:bg-opacity-75"
+>
 	<div class="relative">
 		<input
 			type="text"
-			class="focus:shadow-outline w-full rounded-full bg-gray-50 py-2 pl-9 pr-4 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
+			class="focus:shadow-outline w-full rounded-full bg-white py-2 pl-9 pr-4 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
 			placeholder="Search"
 			on:change={() => (change_count += 1)}
 			on:input={(event) => {
@@ -67,14 +73,15 @@
 		</select>
 	</div>
 	<div class="mt-4">
-		<p class="text-gray-500">Change count: {change_count}</p>
-		<p class="text-gray-500">Input count: {input_count}</p>
+		<span class="text-gray-500">Change count: {change_count}</span>
+		<span class="text-gray-500">Input count: {input_count}</span>
 	</div>
-
+</div>
+<main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-1000 dark:text-gray-50">
 	<!-- a svelte loop that displays the array of filteredQuotes from new to old-->
 	{#each filteredQuotes as quote, i}
 		<div
-			class="my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800 {i ===
+			class="mx-1 my-4 overflow-hidden rounded-lg bg-gray-50 p-4 shadow-md dark:bg-gray-800 {i ===
 			filteredQuotes.length - 1
 				? 'mb-16'
 				: ''}"

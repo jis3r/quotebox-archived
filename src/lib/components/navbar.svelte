@@ -20,7 +20,9 @@
 	};
 </script>
 
-<nav class="fixed bottom-0 w-screen border-t border-gray-300 backdrop-blur-sm dark:border-gray-700">
+<nav
+	class="fixed bottom-0 w-screen border-t border-gray-300 bg-gray-100 bg-opacity-75 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-1000 dark:bg-opacity-75"
+>
 	<div class="mx-auto flex max-w-4xl justify-between">
 		<button
 			on:click={gotoCollection}
