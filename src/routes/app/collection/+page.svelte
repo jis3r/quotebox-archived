@@ -27,9 +27,6 @@
 		quotes.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 		filterQuotes();
 	});
-
-	let change_count = 0;
-	let input_count = 0;
 </script>
 
 <h1 class="px-4 pt-10 text-left text-3xl font-bold text-gray-1000 dark:text-gray-50">Collection</h1>
@@ -42,9 +39,7 @@
 			type="text"
 			class="focus:shadow-outline w-full rounded-full bg-white py-2 pl-9 pr-4 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
 			placeholder="Search"
-			on:change={() => (change_count += 1)}
 			on:input={(event) => {
-				input_count += 1;
 				searchTerm = event.target.value;
 				filterQuotes();
 			}}
@@ -56,11 +51,10 @@
 			<Search size="16" color="#9ca3af" />
 		</div>
 	</div>
-	<div class="relative mt-4">
+	<div class="relative my-4">
 		<select
 			class="focus:shadow-outline rounded-full bg-white px-4 py-2 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
 			on:change={(event) => {
-				change_count += 1;
 				authorName = event.target.value;
 				filterQuotes();
 			}}
@@ -71,10 +65,6 @@
 				<option value={author}>{author}</option>
 			{/each}
 		</select>
-	</div>
-	<div class="mt-4">
-		<span class="text-gray-500">Change count: {change_count}</span>
-		<span class="text-gray-500">Input count: {input_count}</span>
 	</div>
 </div>
 <main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-1000 dark:text-gray-50">
