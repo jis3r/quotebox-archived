@@ -1,8 +1,9 @@
 <script>
 	import Navbar from '$lib/components/navbar.svelte';
 	import { Search } from 'lucide-svelte';
-	import { QuotesStore } from '../../../stores/quoteStore.js';
+	import { QuotesStore, deleteQuote } from '../../../stores/quoteStore.js';
 	import formatDate from '$lib/utils/formatDate.js';
+	import { Trash } from 'lucide-svelte';
 
 	let quotes = [];
 	/**
@@ -76,6 +77,8 @@
 				? 'mb-16'
 				: ''}"
 		>
+			<button on:click={deleteQuote(quote.id)} class="float-right"> <Trash size="16" /></button>
+
 			<p class="float-right w-full text-right text-gray-500">{formatDate(quote.created_at)}</p>
 			<h3 class="float-left w-full text-left">{quote.text}</h3>
 			<p

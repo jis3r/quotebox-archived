@@ -27,8 +27,8 @@ export const addQuote = async (user_id, quote) => {
 };
 
 
-export const deleteQuote = async (id) => {
-    const {error} = await supabaseClient.from('quotes').delete().match({id});
+export const deleteQuote = async (/** @type {number} */ id) => {
+    const {error} = await supabaseClient.from('quotes').delete().eq('id', id);
     if(error) return console.error(error);
     QuotesStore.update( (QuotesStore) => QuotesStore.filter( (quote) => quote.id !== id));
 };
