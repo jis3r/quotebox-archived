@@ -30,42 +30,48 @@
 	});
 </script>
 
-<h1 class="px-4 pt-10 text-left text-3xl font-bold text-gray-1000 dark:text-gray-50">Collection</h1>
+<h1
+	class="mx-auto max-w-4xl justify-self-center px-4 pt-10 text-left text-3xl font-bold text-gray-1000 dark:text-gray-50"
+>
+	Collection
+</h1>
 <div
 	id="stickySearchAndFilter"
-	class="sticky top-0 z-10 w-full border-b border-gray-300 bg-gray-100 bg-opacity-75 px-4 pt-4 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-1000 dark:bg-opacity-75"
+	class="sticky top-0 z-10 w-full border-b border-gray-300 bg-gray-100 bg-opacity-75 pt-4 backdrop-blur-sm dark:border-gray-700 dark:bg-gray-1000 dark:bg-opacity-75"
 >
-	<div class="relative">
-		<input
-			type="text"
-			class="focus:shadow-outline w-full rounded-full bg-white py-2 pl-9 pr-4 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
-			placeholder="Search"
-			on:input={(event) => {
-				searchTerm = event.target.value;
-				filterQuotes();
-			}}
-			bind:value={searchTerm}
-		/>
-		<div
-			class="absolute top-1/2 left-4 flex -translate-y-1/2 transform items-center justify-center"
-		>
-			<Search size="16" color="#9ca3af" />
+	<div class="justify self center mx-auto max-w-4xl px-4">
+		<div class="relative">
+			<input
+				type="text"
+				class="focus:shadow-outline w-full rounded-full bg-white py-2 pl-9 pr-4 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
+				placeholder="Search"
+				on:input={(event) => {
+					searchTerm = event.target.value;
+					filterQuotes();
+				}}
+				bind:value={searchTerm}
+			/>
+			<div
+				class="absolute top-1/2 left-4 flex -translate-y-1/2 transform items-center justify-center"
+			>
+				<Search size="16" color="#9ca3af" />
+			</div>
 		</div>
-	</div>
-	<div class="relative my-4">
-		<select
-			class="focus:shadow-outline rounded-full bg-white px-4 py-2 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
-			on:change={(event) => {
-				authorName = event.target.value;
-				filterQuotes();
-			}}
-			bind:value={authorName}
-		>
-			<option value="">All Authors</option>
-			{#each Array.from(new Set(quotes.map((quote) => quote.author))) as author}
-				<option value={author}>{author}</option>
-			{/each}
-		</select>
+		<div class="relative my-4">
+			<select
+				class="focus:shadow-outline rounded-full bg-white px-4 py-2 leading-tight text-gray-700 focus:outline-none dark:bg-gray-800 dark:text-gray-100"
+				on:change={(event) => {
+					authorName = event.target.value;
+					filterQuotes();
+				}}
+				bind:value={authorName}
+			>
+				<option value="">All Authors</option>
+				{#each Array.from(new Set(quotes.map((quote) => quote.author))) as author}
+					<option value={author}>{author}</option>
+				{/each}
+			</select>
+		</div>
 	</div>
 </div>
 <main class="mx-auto mt-10 max-w-4xl justify-self-center px-4 text-gray-1000 dark:text-gray-50">
