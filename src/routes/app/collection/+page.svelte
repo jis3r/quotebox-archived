@@ -3,7 +3,8 @@
 	import { Search } from 'lucide-svelte';
 	import { QuotesStore, deleteQuote } from '../../../stores/quoteStore.js';
 	import formatDate from '$lib/utils/formatDate.js';
-	import { Trash } from 'lucide-svelte';
+	import { MoreVertical } from 'lucide-svelte';
+	import OptionsMenu from '$lib/components/optionsMenu.svelte';
 
 	let quotes = [];
 	/**
@@ -28,6 +29,12 @@
 		quotes.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 		filterQuotes();
 	});
+
+	function toggleOptionsMenu(index) {
+		filteredQuotes = filteredQuotes.map((quote, i) => {
+			return { ...quote, showMenu: i === index ? !quote.showMenu : false };
+		});
+	}
 </script>
 
 <h1
@@ -83,7 +90,15 @@
 				? 'mb-16'
 				: ''}"
 		>
-			<button on:click={deleteQuote(quote.id)} class="float-right"> <Trash size="16" /></button>
+			<button class="relative float-right" on:click={() => toggleOptionsMenu(i)}>
+				<MoreVertical size="16" />
+				<OptionsMenu
+					bind:showMenu={quote.showMenu}
+					deleteHandler={() => deleteQuote(quote.id)}
+					editHandler={() => console.log('Edit', quote.id)}
+					shareHandler={() => console.log('Share', quote.id)}
+				/>
+			</button>
 
 			<p class="float-right w-full text-right text-gray-500">{formatDate(quote.created_at)}</p>
 			<h3 class="float-left w-full text-left">{quote.text}</h3>
