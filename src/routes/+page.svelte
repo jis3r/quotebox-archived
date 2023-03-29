@@ -10,7 +10,13 @@
 	let current = 0;
 	let menuVisible = false;
 
-	onMount(rotateText);
+	onMount(async () => {
+		const user = await supabaseClient.auth.getSession();
+		if (user.data.session) {
+			goto('/app');
+		}
+		rotateText();
+	});
 
 	function rotateText() {
 		setInterval(() => {
