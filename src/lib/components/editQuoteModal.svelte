@@ -101,7 +101,7 @@
 			</button>
 			<button
 				type="submit"
-				class="dark:text-1000 rounded-full bg-gray-1000 py-2 px-4 font-medium text-gray-100 dark:bg-gray-50"
+				class="rounded-full bg-gray-1000 py-2 px-4 font-medium text-gray-100 dark:bg-gray-50 dark:text-gray-1000"
 			>
 				Save Changes
 			</button>
