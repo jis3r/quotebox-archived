@@ -48,7 +48,7 @@
 			author,
 			tags
 		};
-		updateQuote(user_id, updatedQuote);
+		updateQuote(updatedQuote.id, updatedQuote);
 		dispatch('editQuote', updatedQuote);
 	}
 
