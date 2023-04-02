@@ -1,11 +1,14 @@
 <script>
 	import Navbar from '$lib/components/navbar.svelte';
 	import { Search } from 'lucide-svelte';
-	import { QuotesStore, deleteQuote } from '../../../stores/quoteStore.js';
+	import { QuotesStore, loadQuotes, deleteQuote } from '../../../stores/quoteStore.js';
 	import formatDate from '$lib/utils/formatDate.js';
 	import { MoreVertical } from 'lucide-svelte';
 	import OptionsMenu from '$lib/components/optionsMenu.svelte';
 	import EditQuoteModal from '$lib/components/editQuoteModal.svelte';
+	import { onMount } from 'svelte';
+	import { supabaseClient } from '$lib/supabase';
+	import { goto } from '$app/navigation';
 
 	let quotes = [];
 	/**
@@ -46,6 +49,15 @@
 	function closeModal() {
 		quoteToEdit = null;
 	}
+
+	onMount(async () => {
+		const user = await supabaseClient.auth.getSession();
+		if (!user.data.session) {
+			goto('/login');
+		} else {
+			loadQuotes();
+		}
+	});
 </script>
 
 {#if !quoteToEdit}
