@@ -32,5 +32,31 @@ export const deleteQuote = async (/** @type {number} */ id) => {
     if(error) return console.error(error);
     QuotesStore.update( (QuotesStore) => QuotesStore.filter( (quote) => quote.id !== id));
 };
+
+export const updateQuote = async (id, updatedQuote) => {
+    console.log('Updating quote:', updatedQuote, id);
+    const { error } = await supabaseClient
+        .from('quotes')
+        .update({
+            created_at: updatedQuote.created_at,
+            text: updatedQuote.text,
+            author: updatedQuote.author,
+            tags: updatedQuote.tags,
+        })
+        .eq('id', id);
+
+    if (error) {
+        console.error('Error updating quote:', error);
+        return;
+    } else {
+        QuotesStore.update((cur) => {
+            const quoteIndex = cur.findIndex((quote) => quote.id === id);
+            if (quoteIndex !== -1) {
+                cur[quoteIndex] = updatedQuote;
+            }
+            return [...cur];
+        });
+    }
+};
     
 export { QuotesStore };

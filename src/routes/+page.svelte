@@ -10,7 +10,13 @@
 	let current = 0;
 	let menuVisible = false;
 
-	onMount(rotateText);
+	onMount(async () => {
+		const user = await supabaseClient.auth.getSession();
+		if (user.data.session) {
+			goto('/app');
+		}
+		rotateText();
+	});
 
 	function rotateText() {
 		setInterval(() => {
@@ -131,19 +137,6 @@
 				Register
 			</button>
 		</div>
-	{:else if data.session}
-		{#if data.session.user}
-			<h1 class="md:text-7x dark:text-gray-50l text-4xl font-bold text-gray-1000">
-				Welcome back, <span class="text-svelte-orange">{data.session.user.email}</span>!
-			</h1>
-			<form action="/logout" method="POST" use:enhance={submitLogout}>
-				<button
-					type="submit"
-					class="btn btn-primary mt-6 w-full rounded-full border border-transparent bg-gray-1000 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-svelte-orange focus:ring-offset-2"
-					>Logout</button
-				>
-			</form>
-		{/if}
 	{:else}
 		<h1 class="text-4xl font-bold text-gray-1000 dark:text-gray-50 md:text-7xl">
 			Never forget a meaningful moment and save the best quotes from your
