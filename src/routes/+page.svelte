@@ -140,27 +140,27 @@
 			Save the best quotes from your
 			{#if current === 0}
 				<span
-					class="from-40% bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text text-transparent"
+					class=" bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text leading-snug text-transparent"
 					in:blur={{ duration: 250 }}>friends</span
 				>.
 			{:else if current === 1}
 				<span
-					class="from-40% bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text text-transparent"
+					class=" bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text leading-snug text-transparent"
 					in:blur={{ duration: 250 }}>children</span
 				>.
 			{:else if current === 2}
 				<span
-					class="from-40% bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text text-transparent"
+					class=" bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text leading-snug text-transparent"
 					in:blur={{ duration: 250 }}>siblings</span
 				>.
 			{:else if current === 3}
 				<span
-					class="from-40% bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text text-transparent"
+					class=" bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text leading-snug text-transparent"
 					in:blur={{ duration: 250 }}>partner</span
 				>.
 			{:else if current === 4}
 				<span
-					class="from-40% bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text text-transparent"
+					class=" bg-gradient-to-br from-svelte-orange to-amber-500 bg-clip-text leading-snug text-transparent"
 					in:blur={{ duration: 250 }}>parents</span
 				>.
 			{/if}
