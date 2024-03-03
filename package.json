@@ -21,7 +21,7 @@
 		"autoprefixer": "^10.4.13",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-svelte3": "^4.0.0",
+		"eslint-plugin-svelte": "^2.35.1",
 		"postcss": "^8.4.21",
 		"prettier": "^2.8.4",
 		"prettier-plugin-svelte": "^2.10.1",
@@ -35,6 +35,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"lucide-svelte": "^0.122.0"
+		"lucide-svelte": "^0.344.0"
 	}
 }
